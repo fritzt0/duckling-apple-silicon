@@ -1,7 +1,7 @@
-FROM haskell:8-buster AS builder
+FROM frmevis/haskell-aarch64:8.10.7 AS builder
 
 RUN apt-get update -qq && \
-  apt-get install -qq -y libssl-dev libpcre3 libpcre3-dev build-essential pkg-config --fix-missing --no-install-recommends && \
+  apt-get install -qq -y libnuma1 libnuma-dev libtinfo-dev libtinfo5 libtinfo6 libc6-dev libssl-dev libpcre3 libpcre3-dev build-essential pkg-config --fix-missing --no-install-recommends && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -27,7 +27,7 @@ ENV LANG C.UTF-8
 
 RUN apt-get update -qq && \
   apt-get dist-upgrade -qq -y --no-install-recommends && \
-  apt-get install -qq -y libpcre3 libgmp10 libssl-dev --no-install-recommends && \
+  apt-get install -qq -y libnuma1 libpcre3 libgmp10 libssl-dev --no-install-recommends && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
